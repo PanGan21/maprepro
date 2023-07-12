@@ -1,0 +1,12 @@
+syntax = "proto3";
+package maprepro.repro;
+
+option go_package = "maprepro/x/repro/types";
+
+message Mymap {
+  string index = 1;
+  string creator = 2;
+  InnerMap innerMap = 3;
+}
+
+message InnerMap { map<string, string> inner = 1; }

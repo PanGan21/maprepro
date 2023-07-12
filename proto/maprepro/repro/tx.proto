@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package maprepro.repro;
+
+import "maprepro/repro/mymap.proto";
+
+option go_package = "maprepro/x/repro/types";
+
+// Msg defines the Msg service.
+service Msg {
+  rpc CreateMymap(MsgCreateMymap) returns (MsgCreateMymapResponse);
+  rpc UpdateMymap(MsgUpdateMymap) returns (MsgUpdateMymapResponse);
+  rpc DeleteMymap(MsgDeleteMymap) returns (MsgDeleteMymapResponse);
+}
+message MsgCreateMymap {
+  string creator = 1;
+  string index = 2;
+  InnerMap innerMap = 3;
+}
+
+message MsgCreateMymapResponse {}
+
+message MsgUpdateMymap {
+  string creator = 1;
+  string index = 2;
+  InnerMap innerMap = 3;
+}
+
+message MsgUpdateMymapResponse {}
+
+message MsgDeleteMymap {
+  string creator = 1;
+  string index = 2;
+}
+
+message MsgDeleteMymapResponse {}

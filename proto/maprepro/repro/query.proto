@@ -1,0 +1,58 @@
+syntax = "proto3";
+
+package maprepro.repro;
+
+import "gogoproto/gogo.proto";
+import "google/api/annotations.proto";
+import "cosmos/base/query/v1beta1/pagination.proto";
+import "maprepro/repro/params.proto";
+import "maprepro/repro/mymap.proto";
+
+option go_package = "maprepro/x/repro/types";
+
+// Query defines the gRPC querier service.
+service Query {
+  
+  // Parameters queries the parameters of the module.
+  rpc Params (QueryParamsRequest) returns (QueryParamsResponse) {
+    option (google.api.http).get = "/maprepro/repro/params";
+  
+  }
+  
+  // Queries a list of Mymap items.
+  rpc Mymap    (QueryGetMymapRequest) returns (QueryGetMymapResponse) {
+    option (google.api.http).get = "/maprepro/repro/mymap/{index}";
+  
+  }
+  rpc MymapAll (QueryAllMymapRequest) returns (QueryAllMymapResponse) {
+    option (google.api.http).get = "/maprepro/repro/mymap";
+  
+  }
+}
+// QueryParamsRequest is request type for the Query/Params RPC method.
+message QueryParamsRequest {}
+
+// QueryParamsResponse is response type for the Query/Params RPC method.
+message QueryParamsResponse {
+  
+  // params holds all the parameters of this module.
+  Params params = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryGetMymapRequest {
+  string index = 1;
+}
+
+message QueryGetMymapResponse {
+  Mymap mymap = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllMymapRequest {
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllMymapResponse {
+  repeated Mymap                                  mymap      = 1 [(gogoproto.nullable) = false];
+           cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+

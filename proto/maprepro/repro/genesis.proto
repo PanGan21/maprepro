@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package maprepro.repro;
+
+import "gogoproto/gogo.proto";
+import "maprepro/repro/params.proto";
+import "maprepro/repro/mymap.proto";
+
+option go_package = "maprepro/x/repro/types";
+
+// GenesisState defines the repro module's genesis state.
+message GenesisState {
+           Params params    = 1 [(gogoproto.nullable) = false];
+  repeated Mymap  mymapList = 2 [(gogoproto.nullable) = false];
+}
+

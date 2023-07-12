@@ -1,11 +1,12 @@
 package cli
 
 import (
+	"maprepro/x/repro/types"
+
 	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/client/flags"
 	"github.com/cosmos/cosmos-sdk/client/tx"
 	"github.com/spf13/cobra"
-	"maprepro/x/repro/types"
 )
 
 func CmdCreateMymap() *cobra.Command {
@@ -24,9 +25,22 @@ func CmdCreateMymap() *cobra.Command {
 				return err
 			}
 
+			inner := make(map[string]string)
+			inner["a"] = "a"
+			inner["b"] = "b"
+			inner["c"] = "c"
+			inner["d"] = "d"
+			inner["e"] = "e"
+			inner["f"] = "f"
+			inner["g"] = "g"
+			innerMap := types.InnerMap{
+				Inner: inner,
+			}
+
 			msg := types.NewMsgCreateMymap(
 				clientCtx.GetFromAddress().String(),
 				indexIndex,
+				innerMap,
 			)
 			if err := msg.ValidateBasic(); err != nil {
 				return err

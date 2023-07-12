@@ -3,9 +3,10 @@ package keeper
 import (
 	"context"
 
+	"maprepro/x/repro/types"
+
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
-	"maprepro/x/repro/types"
 )
 
 func (k msgServer) CreateMymap(goCtx context.Context, msg *types.MsgCreateMymap) (*types.MsgCreateMymapResponse, error) {
@@ -21,8 +22,9 @@ func (k msgServer) CreateMymap(goCtx context.Context, msg *types.MsgCreateMymap)
 	}
 
 	var mymap = types.Mymap{
-		Creator: msg.Creator,
-		Index:   msg.Index,
+		Creator:  msg.Creator,
+		Index:    msg.Index,
+		InnerMap: msg.InnerMap,
 	}
 
 	k.SetMymap(

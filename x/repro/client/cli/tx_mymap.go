@@ -25,63 +25,9 @@ func CmdCreateMymap() *cobra.Command {
 				return err
 			}
 
-			mockRuleList := types.RuleList{
-				Rule: []types.Rule{
-					{
-						Rule: map[string]int32{
-							"key1": 10,
-							"key2": 20,
-						},
-					},
-					{
-						Rule: map[string]int32{
-							"key3": 30,
-							"key4": 40,
-						},
-					},
-					{
-						Rule: map[string]int32{
-							"key5": 30,
-							"key6": 40,
-						},
-					},
-					{
-						Rule: map[string]int32{
-							"key7": 30,
-							"key8": 40,
-						},
-					},
-					{
-						Rule: map[string]int32{
-							"key9":  30,
-							"key10": 40,
-						},
-					},
-				},
-			}
-
-			mockCategory := types.Category{
-				Rules: map[string]types.RuleList{
-					"category1": mockRuleList,
-					"category2": mockRuleList,
-					"category3": mockRuleList,
-					"category4": mockRuleList,
-				},
-			}
-
-			mockPolicy := types.Policy{
-				Policy: map[string]types.Category{
-					"policy1": mockCategory,
-					"policy2": mockCategory,
-					"policy3": mockCategory,
-					"policy4": mockCategory,
-				},
-			}
-
 			msg := types.NewMsgCreateMymap(
 				clientCtx.GetFromAddress().String(),
 				indexIndex,
-				mockPolicy,
 			)
 			if err := msg.ValidateBasic(); err != nil {
 				return err

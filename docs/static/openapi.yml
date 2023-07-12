@@ -43882,25 +43882,25 @@ paths:
                       type: string
                     creator:
                       type: string
-                    policy:
+                    innerMap:
                       type: object
                       properties:
-                        policy:
+                        innerMap:
                           type: object
                           additionalProperties:
                             type: object
                             properties:
-                              rules:
+                              thirdMaps:
                                 type: object
                                 additionalProperties:
                                   type: object
                                   properties:
-                                    rule:
+                                    thirdMap:
                                       type: array
                                       items:
                                         type: object
                                         properties:
-                                          rule:
+                                          thirdMap:
                                             type: object
                                             additionalProperties:
                                               type: integer
@@ -44027,25 +44027,25 @@ paths:
                     type: string
                   creator:
                     type: string
-                  policy:
+                  innerMap:
                     type: object
                     properties:
-                      policy:
+                      innerMap:
                         type: object
                         additionalProperties:
                           type: object
                           properties:
-                            rules:
+                            thirdMaps:
                               type: object
                               additionalProperties:
                                 type: object
                                 properties:
-                                  rule:
+                                  thirdMap:
                                     type: array
                                     items:
                                       type: object
                                       properties:
-                                        rule:
+                                        thirdMap:
                                           type: object
                                           additionalProperties:
                                             type: integer
@@ -71645,24 +71645,29 @@ definitions:
     description: |-
       Version defines the versioning scheme used to negotiate the IBC verison in
       the connection handshake.
-  maprepro.repro.Category:
+  maprepro.repro.InnerMap:
     type: object
     properties:
-      rules:
+      innerMap:
         type: object
         additionalProperties:
           type: object
           properties:
-            rule:
-              type: array
-              items:
+            thirdMaps:
+              type: object
+              additionalProperties:
                 type: object
                 properties:
-                  rule:
-                    type: object
-                    additionalProperties:
-                      type: integer
-                      format: int32
+                  thirdMap:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        thirdMap:
+                          type: object
+                          additionalProperties:
+                            type: integer
+                            format: int32
   maprepro.repro.MsgCreateMymapResponse:
     type: object
   maprepro.repro.MsgDeleteMymapResponse:
@@ -71676,25 +71681,25 @@ definitions:
         type: string
       creator:
         type: string
-      policy:
+      innerMap:
         type: object
         properties:
-          policy:
+          innerMap:
             type: object
             additionalProperties:
               type: object
               properties:
-                rules:
+                thirdMaps:
                   type: object
                   additionalProperties:
                     type: object
                     properties:
-                      rule:
+                      thirdMap:
                         type: array
                         items:
                           type: object
                           properties:
-                            rule:
+                            thirdMap:
                               type: object
                               additionalProperties:
                                 type: integer
@@ -71702,29 +71707,6 @@ definitions:
   maprepro.repro.Params:
     type: object
     description: Params defines the parameters for the module.
-  maprepro.repro.Policy:
-    type: object
-    properties:
-      policy:
-        type: object
-        additionalProperties:
-          type: object
-          properties:
-            rules:
-              type: object
-              additionalProperties:
-                type: object
-                properties:
-                  rule:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        rule:
-                          type: object
-                          additionalProperties:
-                            type: integer
-                            format: int32
   maprepro.repro.QueryAllMymapResponse:
     type: object
     properties:
@@ -71737,25 +71719,25 @@ definitions:
               type: string
             creator:
               type: string
-            policy:
+            innerMap:
               type: object
               properties:
-                policy:
+                innerMap:
                   type: object
                   additionalProperties:
                     type: object
                     properties:
-                      rules:
+                      thirdMaps:
                         type: object
                         additionalProperties:
                           type: object
                           properties:
-                            rule:
+                            thirdMap:
                               type: array
                               items:
                                 type: object
                                 properties:
-                                  rule:
+                                  thirdMap:
                                     type: object
                                     additionalProperties:
                                       type: integer
@@ -71796,25 +71778,25 @@ definitions:
             type: string
           creator:
             type: string
-          policy:
+          innerMap:
             type: object
             properties:
-              policy:
+              innerMap:
                 type: object
                 additionalProperties:
                   type: object
                   properties:
-                    rules:
+                    thirdMaps:
                       type: object
                       additionalProperties:
                         type: object
                         properties:
-                          rule:
+                          thirdMap:
                             type: array
                             items:
                               type: object
                               properties:
-                                rule:
+                                thirdMap:
                                   type: object
                                   additionalProperties:
                                     type: integer
@@ -71826,23 +71808,41 @@ definitions:
         description: params holds all the parameters of this module.
         type: object
     description: QueryParamsResponse is response type for the Query/Params RPC method.
-  maprepro.repro.Rule:
+  maprepro.repro.SecMap:
     type: object
     properties:
-      rule:
+      thirdMaps:
+        type: object
+        additionalProperties:
+          type: object
+          properties:
+            thirdMap:
+              type: array
+              items:
+                type: object
+                properties:
+                  thirdMap:
+                    type: object
+                    additionalProperties:
+                      type: integer
+                      format: int32
+  maprepro.repro.ThirdMap:
+    type: object
+    properties:
+      thirdMap:
         type: object
         additionalProperties:
           type: integer
           format: int32
-  maprepro.repro.RuleList:
+  maprepro.repro.ThirdMapList:
     type: object
     properties:
-      rule:
+      thirdMap:
         type: array
         items:
           type: object
           properties:
-            rule:
+            thirdMap:
               type: object
               additionalProperties:
                 type: integer

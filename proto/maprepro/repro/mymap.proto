@@ -7,17 +7,19 @@ import "gogoproto/gogo.proto";
 message Mymap {
   string index = 1;
   string creator = 2;
-  Policy policy = 3;
+  InnerMap innerMap = 3;
 }
 
-message Rule { map<string, int32> rule = 1; }
+message ThirdMap { map<string, int32> thirdMap = 1; }
 
-message Policy {
-  map<string, Category> policy = 1 [ (gogoproto.nullable) = false ];
+message InnerMap {
+  map<string, SecMap> innerMap = 1 [ (gogoproto.nullable) = false ];
 }
 
-message Category {
-  map<string, RuleList> rules = 1 [ (gogoproto.nullable) = false ];
+message SecMap {
+  map<string, ThirdMapList> thirdMaps = 1 [ (gogoproto.nullable) = false ];
 }
 
-message RuleList { repeated Rule rule = 1 [ (gogoproto.nullable) = false ]; }
+message ThirdMapList {
+  repeated ThirdMap thirdMap = 1 [ (gogoproto.nullable) = false ];
+}

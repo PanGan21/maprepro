@@ -24,9 +24,9 @@ var _ = math.Inf
 const _ = proto.GoGoProtoPackageIsVersion3 // please upgrade the proto package
 
 type Mymap struct {
-	Index   string  `protobuf:"bytes,1,opt,name=index,proto3" json:"index,omitempty"`
-	Creator string  `protobuf:"bytes,2,opt,name=creator,proto3" json:"creator,omitempty"`
-	Policy  *Policy `protobuf:"bytes,3,opt,name=policy,proto3" json:"policy,omitempty"`
+	Index    string    `protobuf:"bytes,1,opt,name=index,proto3" json:"index,omitempty"`
+	Creator  string    `protobuf:"bytes,2,opt,name=creator,proto3" json:"creator,omitempty"`
+	InnerMap *InnerMap `protobuf:"bytes,3,opt,name=innerMap,proto3" json:"innerMap,omitempty"`
 }
 
 func (m *Mymap) Reset()         { *m = Mymap{} }
@@ -76,29 +76,29 @@ func (m *Mymap) GetCreator() string {
 	return ""
 }
 
-func (m *Mymap) GetPolicy() *Policy {
+func (m *Mymap) GetInnerMap() *InnerMap {
 	if m != nil {
-		return m.Policy
+		return m.InnerMap
 	}
 	return nil
 }
 
-type Rule struct {
-	Rule map[string]int32 `protobuf:"bytes,1,rep,name=rule,proto3" json:"rule,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"varint,2,opt,name=value,proto3"`
+type ThirdMap struct {
+	ThirdMap map[string]int32 `protobuf:"bytes,1,rep,name=thirdMap,proto3" json:"thirdMap,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"varint,2,opt,name=value,proto3"`
 }
 
-func (m *Rule) Reset()         { *m = Rule{} }
-func (m *Rule) String() string { return proto.CompactTextString(m) }
-func (*Rule) ProtoMessage()    {}
-func (*Rule) Descriptor() ([]byte, []int) {
+func (m *ThirdMap) Reset()         { *m = ThirdMap{} }
+func (m *ThirdMap) String() string { return proto.CompactTextString(m) }
+func (*ThirdMap) ProtoMessage()    {}
+func (*ThirdMap) Descriptor() ([]byte, []int) {
 	return fileDescriptor_2d829411b55fc07a, []int{1}
 }
-func (m *Rule) XXX_Unmarshal(b []byte) error {
+func (m *ThirdMap) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *Rule) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *ThirdMap) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_Rule.Marshal(b, m, deterministic)
+		return xxx_messageInfo_ThirdMap.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -108,41 +108,41 @@ func (m *Rule) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 		return b[:n], nil
 	}
 }
-func (m *Rule) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Rule.Merge(m, src)
+func (m *ThirdMap) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ThirdMap.Merge(m, src)
 }
-func (m *Rule) XXX_Size() int {
+func (m *ThirdMap) XXX_Size() int {
 	return m.Size()
 }
-func (m *Rule) XXX_DiscardUnknown() {
-	xxx_messageInfo_Rule.DiscardUnknown(m)
+func (m *ThirdMap) XXX_DiscardUnknown() {
+	xxx_messageInfo_ThirdMap.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_Rule proto.InternalMessageInfo
+var xxx_messageInfo_ThirdMap proto.InternalMessageInfo
 
-func (m *Rule) GetRule() map[string]int32 {
+func (m *ThirdMap) GetThirdMap() map[string]int32 {
 	if m != nil {
-		return m.Rule
+		return m.ThirdMap
 	}
 	return nil
 }
 
-type Policy struct {
-	Policy map[string]Category `protobuf:"bytes,1,rep,name=policy,proto3" json:"policy" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
+type InnerMap struct {
+	InnerMap map[string]SecMap `protobuf:"bytes,1,rep,name=innerMap,proto3" json:"innerMap" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
 }
 
-func (m *Policy) Reset()         { *m = Policy{} }
-func (m *Policy) String() string { return proto.CompactTextString(m) }
-func (*Policy) ProtoMessage()    {}
-func (*Policy) Descriptor() ([]byte, []int) {
+func (m *InnerMap) Reset()         { *m = InnerMap{} }
+func (m *InnerMap) String() string { return proto.CompactTextString(m) }
+func (*InnerMap) ProtoMessage()    {}
+func (*InnerMap) Descriptor() ([]byte, []int) {
 	return fileDescriptor_2d829411b55fc07a, []int{2}
 }
-func (m *Policy) XXX_Unmarshal(b []byte) error {
+func (m *InnerMap) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *Policy) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *InnerMap) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_Policy.Marshal(b, m, deterministic)
+		return xxx_messageInfo_InnerMap.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -152,41 +152,41 @@ func (m *Policy) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 		return b[:n], nil
 	}
 }
-func (m *Policy) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Policy.Merge(m, src)
+func (m *InnerMap) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_InnerMap.Merge(m, src)
 }
-func (m *Policy) XXX_Size() int {
+func (m *InnerMap) XXX_Size() int {
 	return m.Size()
 }
-func (m *Policy) XXX_DiscardUnknown() {
-	xxx_messageInfo_Policy.DiscardUnknown(m)
+func (m *InnerMap) XXX_DiscardUnknown() {
+	xxx_messageInfo_InnerMap.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_Policy proto.InternalMessageInfo
+var xxx_messageInfo_InnerMap proto.InternalMessageInfo
 
-func (m *Policy) GetPolicy() map[string]Category {
+func (m *InnerMap) GetInnerMap() map[string]SecMap {
 	if m != nil {
-		return m.Policy
+		return m.InnerMap
 	}
 	return nil
 }
 
-type Category struct {
-	Rules map[string]RuleList `protobuf:"bytes,1,rep,name=rules,proto3" json:"rules" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
+type SecMap struct {
+	ThirdMaps map[string]ThirdMapList `protobuf:"bytes,1,rep,name=thirdMaps,proto3" json:"thirdMaps" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
 }
 
-func (m *Category) Reset()         { *m = Category{} }
-func (m *Category) String() string { return proto.CompactTextString(m) }
-func (*Category) ProtoMessage()    {}
-func (*Category) Descriptor() ([]byte, []int) {
+func (m *SecMap) Reset()         { *m = SecMap{} }
+func (m *SecMap) String() string { return proto.CompactTextString(m) }
+func (*SecMap) ProtoMessage()    {}
+func (*SecMap) Descriptor() ([]byte, []int) {
 	return fileDescriptor_2d829411b55fc07a, []int{3}
 }
-func (m *Category) XXX_Unmarshal(b []byte) error {
+func (m *SecMap) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *Category) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *SecMap) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_Category.Marshal(b, m, deterministic)
+		return xxx_messageInfo_SecMap.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -196,41 +196,41 @@ func (m *Category) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 		return b[:n], nil
 	}
 }
-func (m *Category) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Category.Merge(m, src)
+func (m *SecMap) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_SecMap.Merge(m, src)
 }
-func (m *Category) XXX_Size() int {
+func (m *SecMap) XXX_Size() int {
 	return m.Size()
 }
-func (m *Category) XXX_DiscardUnknown() {
-	xxx_messageInfo_Category.DiscardUnknown(m)
+func (m *SecMap) XXX_DiscardUnknown() {
+	xxx_messageInfo_SecMap.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_Category proto.InternalMessageInfo
+var xxx_messageInfo_SecMap proto.InternalMessageInfo
 
-func (m *Category) GetRules() map[string]RuleList {
+func (m *SecMap) GetThirdMaps() map[string]ThirdMapList {
 	if m != nil {
-		return m.Rules
+		return m.ThirdMaps
 	}
 	return nil
 }
 
-type RuleList struct {
-	Rule []Rule `protobuf:"bytes,1,rep,name=rule,proto3" json:"rule"`
+type ThirdMapList struct {
+	ThirdMap []ThirdMap `protobuf:"bytes,1,rep,name=thirdMap,proto3" json:"thirdMap"`
 }
 
-func (m *RuleList) Reset()         { *m = RuleList{} }
-func (m *RuleList) String() string { return proto.CompactTextString(m) }
-func (*RuleList) ProtoMessage()    {}
-func (*RuleList) Descriptor() ([]byte, []int) {
+func (m *ThirdMapList) Reset()         { *m = ThirdMapList{} }
+func (m *ThirdMapList) String() string { return proto.CompactTextString(m) }
+func (*ThirdMapList) ProtoMessage()    {}
+func (*ThirdMapList) Descriptor() ([]byte, []int) {
 	return fileDescriptor_2d829411b55fc07a, []int{4}
 }
-func (m *RuleList) XXX_Unmarshal(b []byte) error {
+func (m *ThirdMapList) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *RuleList) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *ThirdMapList) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_RuleList.Marshal(b, m, deterministic)
+		return xxx_messageInfo_ThirdMapList.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -240,63 +240,64 @@ func (m *RuleList) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 		return b[:n], nil
 	}
 }
-func (m *RuleList) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_RuleList.Merge(m, src)
+func (m *ThirdMapList) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ThirdMapList.Merge(m, src)
 }
-func (m *RuleList) XXX_Size() int {
+func (m *ThirdMapList) XXX_Size() int {
 	return m.Size()
 }
-func (m *RuleList) XXX_DiscardUnknown() {
-	xxx_messageInfo_RuleList.DiscardUnknown(m)
+func (m *ThirdMapList) XXX_DiscardUnknown() {
+	xxx_messageInfo_ThirdMapList.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_RuleList proto.InternalMessageInfo
+var xxx_messageInfo_ThirdMapList proto.InternalMessageInfo
 
-func (m *RuleList) GetRule() []Rule {
+func (m *ThirdMapList) GetThirdMap() []ThirdMap {
 	if m != nil {
-		return m.Rule
+		return m.ThirdMap
 	}
 	return nil
 }
 
 func init() {
 	proto.RegisterType((*Mymap)(nil), "maprepro.repro.Mymap")
-	proto.RegisterType((*Rule)(nil), "maprepro.repro.Rule")
-	proto.RegisterMapType((map[string]int32)(nil), "maprepro.repro.Rule.RuleEntry")
-	proto.RegisterType((*Policy)(nil), "maprepro.repro.Policy")
-	proto.RegisterMapType((map[string]Category)(nil), "maprepro.repro.Policy.PolicyEntry")
-	proto.RegisterType((*Category)(nil), "maprepro.repro.Category")
-	proto.RegisterMapType((map[string]RuleList)(nil), "maprepro.repro.Category.RulesEntry")
-	proto.RegisterType((*RuleList)(nil), "maprepro.repro.RuleList")
+	proto.RegisterType((*ThirdMap)(nil), "maprepro.repro.ThirdMap")
+	proto.RegisterMapType((map[string]int32)(nil), "maprepro.repro.ThirdMap.ThirdMapEntry")
+	proto.RegisterType((*InnerMap)(nil), "maprepro.repro.InnerMap")
+	proto.RegisterMapType((map[string]SecMap)(nil), "maprepro.repro.InnerMap.InnerMapEntry")
+	proto.RegisterType((*SecMap)(nil), "maprepro.repro.SecMap")
+	proto.RegisterMapType((map[string]ThirdMapList)(nil), "maprepro.repro.SecMap.ThirdMapsEntry")
+	proto.RegisterType((*ThirdMapList)(nil), "maprepro.repro.ThirdMapList")
 }
 
 func init() { proto.RegisterFile("maprepro/repro/mymap.proto", fileDescriptor_2d829411b55fc07a) }
 
 var fileDescriptor_2d829411b55fc07a = []byte{
-	// 365 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x9c, 0x92, 0xcf, 0x4e, 0xfa, 0x40,
-	0x10, 0xc7, 0xbb, 0x40, 0xf9, 0xc1, 0x34, 0xf9, 0xc5, 0x6c, 0x08, 0x69, 0x7a, 0x58, 0x49, 0xbd,
-	0x70, 0x5a, 0x4c, 0x3d, 0x68, 0xb8, 0x68, 0x30, 0xde, 0x34, 0x31, 0xf5, 0xe6, 0xad, 0xe2, 0xa6,
-	0x21, 0x16, 0xb6, 0xd9, 0x16, 0x43, 0xdf, 0xc2, 0x37, 0xf0, 0x75, 0x38, 0x72, 0xf4, 0x64, 0x0c,
-	0xbc, 0x88, 0xd9, 0x3f, 0xc5, 0x42, 0xf0, 0xe2, 0x65, 0xba, 0x33, 0xf3, 0xfd, 0x76, 0x3e, 0xdb,
-	0x0e, 0x78, 0xd3, 0x28, 0x15, 0x2c, 0x15, 0x7c, 0xa0, 0xe3, 0xb4, 0x98, 0x46, 0x29, 0x4d, 0x05,
-	0xcf, 0x39, 0xfe, 0x5f, 0xf6, 0xa8, 0x8a, 0x5e, 0x27, 0xe6, 0x31, 0x57, 0xad, 0x81, 0x3c, 0x69,
-	0x95, 0x1f, 0x83, 0x7d, 0x27, 0x4d, 0xb8, 0x03, 0xf6, 0x64, 0xf6, 0xcc, 0x16, 0x2e, 0xea, 0xa1,
-	0x7e, 0x3b, 0xd4, 0x09, 0x76, 0xe1, 0xdf, 0x58, 0xb0, 0x28, 0xe7, 0xc2, 0xad, 0xa9, 0x7a, 0x99,
-	0x62, 0x0a, 0xcd, 0x94, 0x27, 0x93, 0x71, 0xe1, 0xd6, 0x7b, 0xa8, 0xef, 0x04, 0x5d, 0xba, 0x3b,
-	0x8f, 0xde, 0xab, 0x6e, 0x68, 0x54, 0x7e, 0x06, 0x8d, 0x70, 0x9e, 0x30, 0x1c, 0x40, 0x43, 0xcc,
-	0x13, 0xe6, 0xa2, 0x5e, 0xbd, 0xef, 0x04, 0x64, 0xdf, 0x25, 0x35, 0x2a, 0xdc, 0xcc, 0x72, 0x51,
-	0x84, 0x4a, 0xeb, 0x9d, 0x43, 0x7b, 0x5b, 0xc2, 0x47, 0x50, 0x7f, 0x61, 0x85, 0xc1, 0x94, 0x47,
-	0x89, 0xfe, 0x1a, 0x25, 0x73, 0xa6, 0x10, 0xed, 0x50, 0x27, 0xc3, 0xda, 0x05, 0xf2, 0xdf, 0x11,
-	0x34, 0x35, 0x07, 0xbe, 0xda, 0xf2, 0xea, 0xc9, 0xfe, 0x61, 0x5e, 0xf3, 0x50, 0xa3, 0x46, 0x8d,
-	0xe5, 0xe7, 0xb1, 0x55, 0xde, 0xc0, 0x7b, 0x00, 0xa7, 0xd2, 0x3c, 0xc0, 0x41, 0xab, 0x1c, 0x4e,
-	0xe0, 0xee, 0x4f, 0xb8, 0x8e, 0x72, 0x16, 0x73, 0x51, 0xec, 0x11, 0xb6, 0xca, 0x3a, 0xbe, 0x04,
-	0x5b, 0xde, 0x37, 0x33, 0x88, 0x27, 0xbf, 0xbd, 0x40, 0x7d, 0xa0, 0xac, 0xca, 0xa8, 0x7d, 0x5e,
-	0x08, 0xf0, 0xd3, 0xfa, 0x03, 0xa1, 0x34, 0xdf, 0x4e, 0xb2, 0xbc, 0x4a, 0x38, 0x84, 0x56, 0x59,
-	0xc6, 0x74, 0xe7, 0xe7, 0x75, 0x0e, 0xd9, 0x0d, 0x90, 0xd2, 0x8d, 0x4e, 0x97, 0x6b, 0x82, 0x56,
-	0x6b, 0x82, 0xbe, 0xd6, 0x04, 0xbd, 0x6d, 0x88, 0xb5, 0xda, 0x10, 0xeb, 0x63, 0x43, 0xac, 0xc7,
-	0xee, 0x76, 0x73, 0x17, 0x66, 0x77, 0xf3, 0x22, 0x65, 0xd9, 0x53, 0x53, 0xad, 0xe5, 0xd9, 0x77,
-	0x00, 0x00, 0x00, 0xff, 0xff, 0xfa, 0x51, 0x49, 0x9c, 0xda, 0x02, 0x00, 0x00,
+	// 380 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0x92, 0xca, 0x4d, 0x2c, 0x28,
+	0x4a, 0x2d, 0x28, 0xca, 0xd7, 0x87, 0x90, 0xb9, 0x95, 0xb9, 0x89, 0x05, 0x7a, 0x05, 0x45, 0xf9,
+	0x25, 0xf9, 0x42, 0x7c, 0x30, 0x39, 0x3d, 0x30, 0x29, 0x25, 0x92, 0x9e, 0x9f, 0x9e, 0x0f, 0x96,
+	0xd2, 0x07, 0xb1, 0x20, 0xaa, 0x94, 0x72, 0xb9, 0x58, 0x7d, 0x41, 0x9a, 0x84, 0x44, 0xb8, 0x58,
+	0x33, 0xf3, 0x52, 0x52, 0x2b, 0x24, 0x18, 0x15, 0x18, 0x35, 0x38, 0x83, 0x20, 0x1c, 0x21, 0x09,
+	0x2e, 0xf6, 0xe4, 0xa2, 0xd4, 0xc4, 0x92, 0xfc, 0x22, 0x09, 0x26, 0xb0, 0x38, 0x8c, 0x2b, 0x64,
+	0xc2, 0xc5, 0x91, 0x99, 0x97, 0x97, 0x5a, 0xe4, 0x9b, 0x58, 0x20, 0xc1, 0xac, 0xc0, 0xa8, 0xc1,
+	0x6d, 0x24, 0xa1, 0x87, 0x6a, 0xa3, 0x9e, 0x27, 0x54, 0x3e, 0x08, 0xae, 0x52, 0xa9, 0x9b, 0x91,
+	0x8b, 0x23, 0x24, 0x23, 0xb3, 0x28, 0xc5, 0x37, 0xb1, 0x40, 0xc8, 0x89, 0x8b, 0xa3, 0x04, 0xca,
+	0x96, 0x60, 0x54, 0x60, 0xd6, 0xe0, 0x36, 0x52, 0x43, 0x37, 0x02, 0xa6, 0x16, 0xce, 0x70, 0xcd,
+	0x2b, 0x29, 0xaa, 0x0c, 0x82, 0xeb, 0x93, 0xb2, 0xe6, 0xe2, 0x45, 0x91, 0x12, 0x12, 0xe0, 0x62,
+	0xce, 0x4e, 0xad, 0x84, 0xfa, 0x02, 0xc4, 0x04, 0xf9, 0xac, 0x2c, 0x31, 0xa7, 0x34, 0x15, 0xec,
+	0x03, 0xd6, 0x20, 0x08, 0xc7, 0x8a, 0xc9, 0x82, 0x51, 0x69, 0x25, 0x23, 0x17, 0x07, 0xcc, 0x91,
+	0x42, 0x1e, 0x48, 0x1e, 0xc2, 0xe1, 0x1a, 0x98, 0x5a, 0x38, 0x03, 0x6c, 0xa5, 0x13, 0xcb, 0x89,
+	0x7b, 0xf2, 0x0c, 0x08, 0x4f, 0x4a, 0x05, 0x73, 0xf1, 0xa2, 0x28, 0xc0, 0xe2, 0x26, 0x1d, 0x64,
+	0x37, 0x71, 0x1b, 0x89, 0xa1, 0xdb, 0x14, 0x9c, 0x9a, 0x0c, 0x0a, 0x38, 0x24, 0xb7, 0xae, 0x67,
+	0xe4, 0x62, 0x83, 0x88, 0x0a, 0x79, 0x72, 0x71, 0xc2, 0xfc, 0x5f, 0x0c, 0x75, 0xaa, 0x2a, 0x76,
+	0x03, 0xe0, 0xc1, 0x56, 0x8c, 0xec, 0x52, 0x84, 0x6e, 0xa9, 0x28, 0x2e, 0x3e, 0x54, 0x25, 0x58,
+	0xdc, 0x6a, 0x84, 0xea, 0x56, 0x19, 0x5c, 0x71, 0xe4, 0x93, 0x59, 0x5c, 0x82, 0xec, 0x62, 0x2f,
+	0x2e, 0x1e, 0x64, 0x29, 0x21, 0x2b, 0x8c, 0xe8, 0x96, 0xc0, 0x65, 0x14, 0x2c, 0x48, 0x61, 0xea,
+	0x9d, 0x0c, 0x4e, 0x3c, 0x92, 0x63, 0xbc, 0xf0, 0x48, 0x8e, 0xf1, 0xc1, 0x23, 0x39, 0xc6, 0x09,
+	0x8f, 0xe5, 0x18, 0x2e, 0x3c, 0x96, 0x63, 0xb8, 0xf1, 0x58, 0x8e, 0x21, 0x4a, 0x0c, 0x9e, 0x05,
+	0x2a, 0xa0, 0x99, 0xa0, 0xa4, 0xb2, 0x20, 0xb5, 0x38, 0x89, 0x0d, 0x9c, 0xbe, 0x8d, 0x01, 0x01,
+	0x00, 0x00, 0xff, 0xff, 0x74, 0xe9, 0x60, 0xe4, 0x23, 0x03, 0x00, 0x00,
 }
 
 func (m *Mymap) Marshal() (dAtA []byte, err error) {
@@ -319,9 +320,9 @@ func (m *Mymap) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
-	if m.Policy != nil {
+	if m.InnerMap != nil {
 		{
-			size, err := m.Policy.MarshalToSizedBuffer(dAtA[:i])
+			size, err := m.InnerMap.MarshalToSizedBuffer(dAtA[:i])
 			if err != nil {
 				return 0, err
 			}
@@ -348,7 +349,7 @@ func (m *Mymap) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	return len(dAtA) - i, nil
 }
 
-func (m *Rule) Marshal() (dAtA []byte, err error) {
+func (m *ThirdMap) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -358,19 +359,19 @@ func (m *Rule) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *Rule) MarshalTo(dAtA []byte) (int, error) {
+func (m *ThirdMap) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *Rule) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *ThirdMap) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
 	_ = l
-	if len(m.Rule) > 0 {
-		for k := range m.Rule {
-			v := m.Rule[k]
+	if len(m.ThirdMap) > 0 {
+		for k := range m.ThirdMap {
+			v := m.ThirdMap[k]
 			baseI := i
 			i = encodeVarintMymap(dAtA, i, uint64(v))
 			i--
@@ -388,7 +389,7 @@ func (m *Rule) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	return len(dAtA) - i, nil
 }
 
-func (m *Policy) Marshal() (dAtA []byte, err error) {
+func (m *InnerMap) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -398,19 +399,19 @@ func (m *Policy) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *Policy) MarshalTo(dAtA []byte) (int, error) {
+func (m *InnerMap) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *Policy) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *InnerMap) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
 	_ = l
-	if len(m.Policy) > 0 {
-		for k := range m.Policy {
-			v := m.Policy[k]
+	if len(m.InnerMap) > 0 {
+		for k := range m.InnerMap {
+			v := m.InnerMap[k]
 			baseI := i
 			{
 				size, err := (&v).MarshalToSizedBuffer(dAtA[:i])
@@ -435,7 +436,7 @@ func (m *Policy) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	return len(dAtA) - i, nil
 }
 
-func (m *Category) Marshal() (dAtA []byte, err error) {
+func (m *SecMap) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -445,19 +446,19 @@ func (m *Category) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *Category) MarshalTo(dAtA []byte) (int, error) {
+func (m *SecMap) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *Category) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *SecMap) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
 	_ = l
-	if len(m.Rules) > 0 {
-		for k := range m.Rules {
-			v := m.Rules[k]
+	if len(m.ThirdMaps) > 0 {
+		for k := range m.ThirdMaps {
+			v := m.ThirdMaps[k]
 			baseI := i
 			{
 				size, err := (&v).MarshalToSizedBuffer(dAtA[:i])
@@ -482,7 +483,7 @@ func (m *Category) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	return len(dAtA) - i, nil
 }
 
-func (m *RuleList) Marshal() (dAtA []byte, err error) {
+func (m *ThirdMapList) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -492,20 +493,20 @@ func (m *RuleList) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *RuleList) MarshalTo(dAtA []byte) (int, error) {
+func (m *ThirdMapList) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *RuleList) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *ThirdMapList) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
 	_ = l
-	if len(m.Rule) > 0 {
-		for iNdEx := len(m.Rule) - 1; iNdEx >= 0; iNdEx-- {
+	if len(m.ThirdMap) > 0 {
+		for iNdEx := len(m.ThirdMap) - 1; iNdEx >= 0; iNdEx-- {
 			{
-				size, err := m.Rule[iNdEx].MarshalToSizedBuffer(dAtA[:i])
+				size, err := m.ThirdMap[iNdEx].MarshalToSizedBuffer(dAtA[:i])
 				if err != nil {
 					return 0, err
 				}
@@ -544,21 +545,21 @@ func (m *Mymap) Size() (n int) {
 	if l > 0 {
 		n += 1 + l + sovMymap(uint64(l))
 	}
-	if m.Policy != nil {
-		l = m.Policy.Size()
+	if m.InnerMap != nil {
+		l = m.InnerMap.Size()
 		n += 1 + l + sovMymap(uint64(l))
 	}
 	return n
 }
 
-func (m *Rule) Size() (n int) {
+func (m *ThirdMap) Size() (n int) {
 	if m == nil {
 		return 0
 	}
 	var l int
 	_ = l
-	if len(m.Rule) > 0 {
-		for k, v := range m.Rule {
+	if len(m.ThirdMap) > 0 {
+		for k, v := range m.ThirdMap {
 			_ = k
 			_ = v
 			mapEntrySize := 1 + len(k) + sovMymap(uint64(len(k))) + 1 + sovMymap(uint64(v))
@@ -568,14 +569,14 @@ func (m *Rule) Size() (n int) {
 	return n
 }
 
-func (m *Policy) Size() (n int) {
+func (m *InnerMap) Size() (n int) {
 	if m == nil {
 		return 0
 	}
 	var l int
 	_ = l
-	if len(m.Policy) > 0 {
-		for k, v := range m.Policy {
+	if len(m.InnerMap) > 0 {
+		for k, v := range m.InnerMap {
 			_ = k
 			_ = v
 			l = v.Size()
@@ -586,14 +587,14 @@ func (m *Policy) Size() (n int) {
 	return n
 }
 
-func (m *Category) Size() (n int) {
+func (m *SecMap) Size() (n int) {
 	if m == nil {
 		return 0
 	}
 	var l int
 	_ = l
-	if len(m.Rules) > 0 {
-		for k, v := range m.Rules {
+	if len(m.ThirdMaps) > 0 {
+		for k, v := range m.ThirdMaps {
 			_ = k
 			_ = v
 			l = v.Size()
@@ -604,14 +605,14 @@ func (m *Category) Size() (n int) {
 	return n
 }
 
-func (m *RuleList) Size() (n int) {
+func (m *ThirdMapList) Size() (n int) {
 	if m == nil {
 		return 0
 	}
 	var l int
 	_ = l
-	if len(m.Rule) > 0 {
-		for _, e := range m.Rule {
+	if len(m.ThirdMap) > 0 {
+		for _, e := range m.ThirdMap {
 			l = e.Size()
 			n += 1 + l + sovMymap(uint64(l))
 		}
@@ -720,7 +721,7 @@ func (m *Mymap) Unmarshal(dAtA []byte) error {
 			iNdEx = postIndex
 		case 3:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Policy", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field InnerMap", wireType)
 			}
 			var msglen int
 			for shift := uint(0); ; shift += 7 {
@@ -747,10 +748,10 @@ func (m *Mymap) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			if m.Policy == nil {
-				m.Policy = &Policy{}
+			if m.InnerMap == nil {
+				m.InnerMap = &InnerMap{}
 			}
-			if err := m.Policy.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+			if err := m.InnerMap.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
 			iNdEx = postIndex
@@ -775,7 +776,7 @@ func (m *Mymap) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *Rule) Unmarshal(dAtA []byte) error {
+func (m *ThirdMap) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -798,15 +799,15 @@ func (m *Rule) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: Rule: wiretype end group for non-group")
+			return fmt.Errorf("proto: ThirdMap: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: Rule: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: ThirdMap: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Rule", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field ThirdMap", wireType)
 			}
 			var msglen int
 			for shift := uint(0); ; shift += 7 {
@@ -833,8 +834,8 @@ func (m *Rule) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			if m.Rule == nil {
-				m.Rule = make(map[string]int32)
+			if m.ThirdMap == nil {
+				m.ThirdMap = make(map[string]int32)
 			}
 			var mapkey string
 			var mapvalue int32
@@ -915,7 +916,7 @@ func (m *Rule) Unmarshal(dAtA []byte) error {
 					iNdEx += skippy
 				}
 			}
-			m.Rule[mapkey] = mapvalue
+			m.ThirdMap[mapkey] = mapvalue
 			iNdEx = postIndex
 		default:
 			iNdEx = preIndex
@@ -938,7 +939,7 @@ func (m *Rule) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *Policy) Unmarshal(dAtA []byte) error {
+func (m *InnerMap) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -961,15 +962,15 @@ func (m *Policy) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: Policy: wiretype end group for non-group")
+			return fmt.Errorf("proto: InnerMap: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: Policy: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: InnerMap: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Policy", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field InnerMap", wireType)
 			}
 			var msglen int
 			for shift := uint(0); ; shift += 7 {
@@ -996,11 +997,11 @@ func (m *Policy) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			if m.Policy == nil {
-				m.Policy = make(map[string]Category)
+			if m.InnerMap == nil {
+				m.InnerMap = make(map[string]SecMap)
 			}
 			var mapkey string
-			mapvalue := &Category{}
+			mapvalue := &SecMap{}
 			for iNdEx < postIndex {
 				entryPreIndex := iNdEx
 				var wire uint64
@@ -1074,7 +1075,7 @@ func (m *Policy) Unmarshal(dAtA []byte) error {
 					if postmsgIndex > l {
 						return io.ErrUnexpectedEOF
 					}
-					mapvalue = &Category{}
+					mapvalue = &SecMap{}
 					if err := mapvalue.Unmarshal(dAtA[iNdEx:postmsgIndex]); err != nil {
 						return err
 					}
@@ -1094,7 +1095,7 @@ func (m *Policy) Unmarshal(dAtA []byte) error {
 					iNdEx += skippy
 				}
 			}
-			m.Policy[mapkey] = *mapvalue
+			m.InnerMap[mapkey] = *mapvalue
 			iNdEx = postIndex
 		default:
 			iNdEx = preIndex
@@ -1117,7 +1118,7 @@ func (m *Policy) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *Category) Unmarshal(dAtA []byte) error {
+func (m *SecMap) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -1140,15 +1141,15 @@ func (m *Category) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: Category: wiretype end group for non-group")
+			return fmt.Errorf("proto: SecMap: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: Category: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: SecMap: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Rules", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field ThirdMaps", wireType)
 			}
 			var msglen int
 			for shift := uint(0); ; shift += 7 {
@@ -1175,11 +1176,11 @@ func (m *Category) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			if m.Rules == nil {
-				m.Rules = make(map[string]RuleList)
+			if m.ThirdMaps == nil {
+				m.ThirdMaps = make(map[string]ThirdMapList)
 			}
 			var mapkey string
-			mapvalue := &RuleList{}
+			mapvalue := &ThirdMapList{}
 			for iNdEx < postIndex {
 				entryPreIndex := iNdEx
 				var wire uint64
@@ -1253,7 +1254,7 @@ func (m *Category) Unmarshal(dAtA []byte) error {
 					if postmsgIndex > l {
 						return io.ErrUnexpectedEOF
 					}
-					mapvalue = &RuleList{}
+					mapvalue = &ThirdMapList{}
 					if err := mapvalue.Unmarshal(dAtA[iNdEx:postmsgIndex]); err != nil {
 						return err
 					}
@@ -1273,7 +1274,7 @@ func (m *Category) Unmarshal(dAtA []byte) error {
 					iNdEx += skippy
 				}
 			}
-			m.Rules[mapkey] = *mapvalue
+			m.ThirdMaps[mapkey] = *mapvalue
 			iNdEx = postIndex
 		default:
 			iNdEx = preIndex
@@ -1296,7 +1297,7 @@ func (m *Category) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *RuleList) Unmarshal(dAtA []byte) error {
+func (m *ThirdMapList) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -1319,15 +1320,15 @@ func (m *RuleList) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: RuleList: wiretype end group for non-group")
+			return fmt.Errorf("proto: ThirdMapList: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: RuleList: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: ThirdMapList: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Rule", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field ThirdMap", wireType)
 			}
 			var msglen int
 			for shift := uint(0); ; shift += 7 {
@@ -1354,8 +1355,8 @@ func (m *RuleList) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.Rule = append(m.Rule, Rule{})
-			if err := m.Rule[len(m.Rule)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+			m.ThirdMap = append(m.ThirdMap, ThirdMap{})
+			if err := m.ThirdMap[len(m.ThirdMap)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
 			iNdEx = postIndex

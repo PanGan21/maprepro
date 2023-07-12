@@ -2,7 +2,7 @@
 
 **maprepro** is a blockchain built using Cosmos SDK and Tendermint and created with [Ignite CLI](https://ignite.com/cli).
 <br/>
-It is a reproduction example of how not to use maps with cosmos sdk because of non deterministic serialization
+It is a reproduction example of how not to use maps with cosmos sdk because of non deterministic serialization/deserialization of protobufs
 
 ## Get started
 

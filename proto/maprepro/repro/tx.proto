@@ -15,7 +15,7 @@ service Msg {
 message MsgCreateMymap {
   string creator = 1;
   string index = 2;
-  InnerMap innerMap = 3;
+  Policy policy = 3;
 }
 
 message MsgCreateMymapResponse {}
@@ -23,7 +23,7 @@ message MsgCreateMymapResponse {}
 message MsgUpdateMymap {
   string creator = 1;
   string index = 2;
-  InnerMap innerMap = 3;
+  Policy policy = 3;
 }
 
 message MsgUpdateMymapResponse {}

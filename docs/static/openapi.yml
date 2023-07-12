@@ -43882,6 +43882,29 @@ paths:
                       type: string
                     creator:
                       type: string
+                    policy:
+                      type: object
+                      properties:
+                        policy:
+                          type: object
+                          additionalProperties:
+                            type: object
+                            properties:
+                              rules:
+                                type: object
+                                additionalProperties:
+                                  type: object
+                                  properties:
+                                    rule:
+                                      type: array
+                                      items:
+                                        type: object
+                                        properties:
+                                          rule:
+                                            type: object
+                                            additionalProperties:
+                                              type: integer
+                                              format: int32
               pagination:
                 type: object
                 properties:
@@ -44004,6 +44027,29 @@ paths:
                     type: string
                   creator:
                     type: string
+                  policy:
+                    type: object
+                    properties:
+                      policy:
+                        type: object
+                        additionalProperties:
+                          type: object
+                          properties:
+                            rules:
+                              type: object
+                              additionalProperties:
+                                type: object
+                                properties:
+                                  rule:
+                                    type: array
+                                    items:
+                                      type: object
+                                      properties:
+                                        rule:
+                                          type: object
+                                          additionalProperties:
+                                            type: integer
+                                            format: int32
         default:
           description: An unexpected error response.
           schema:
@@ -71599,6 +71645,24 @@ definitions:
     description: |-
       Version defines the versioning scheme used to negotiate the IBC verison in
       the connection handshake.
+  maprepro.repro.Category:
+    type: object
+    properties:
+      rules:
+        type: object
+        additionalProperties:
+          type: object
+          properties:
+            rule:
+              type: array
+              items:
+                type: object
+                properties:
+                  rule:
+                    type: object
+                    additionalProperties:
+                      type: integer
+                      format: int32
   maprepro.repro.MsgCreateMymapResponse:
     type: object
   maprepro.repro.MsgDeleteMymapResponse:
@@ -71612,9 +71676,55 @@ definitions:
         type: string
       creator:
         type: string
+      policy:
+        type: object
+        properties:
+          policy:
+            type: object
+            additionalProperties:
+              type: object
+              properties:
+                rules:
+                  type: object
+                  additionalProperties:
+                    type: object
+                    properties:
+                      rule:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            rule:
+                              type: object
+                              additionalProperties:
+                                type: integer
+                                format: int32
   maprepro.repro.Params:
     type: object
     description: Params defines the parameters for the module.
+  maprepro.repro.Policy:
+    type: object
+    properties:
+      policy:
+        type: object
+        additionalProperties:
+          type: object
+          properties:
+            rules:
+              type: object
+              additionalProperties:
+                type: object
+                properties:
+                  rule:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        rule:
+                          type: object
+                          additionalProperties:
+                            type: integer
+                            format: int32
   maprepro.repro.QueryAllMymapResponse:
     type: object
     properties:
@@ -71627,6 +71737,29 @@ definitions:
               type: string
             creator:
               type: string
+            policy:
+              type: object
+              properties:
+                policy:
+                  type: object
+                  additionalProperties:
+                    type: object
+                    properties:
+                      rules:
+                        type: object
+                        additionalProperties:
+                          type: object
+                          properties:
+                            rule:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  rule:
+                                    type: object
+                                    additionalProperties:
+                                      type: integer
+                                      format: int32
       pagination:
         type: object
         properties:
@@ -71663,6 +71796,29 @@ definitions:
             type: string
           creator:
             type: string
+          policy:
+            type: object
+            properties:
+              policy:
+                type: object
+                additionalProperties:
+                  type: object
+                  properties:
+                    rules:
+                      type: object
+                      additionalProperties:
+                        type: object
+                        properties:
+                          rule:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                rule:
+                                  type: object
+                                  additionalProperties:
+                                    type: integer
+                                    format: int32
   maprepro.repro.QueryParamsResponse:
     type: object
     properties:
@@ -71670,3 +71826,24 @@ definitions:
         description: params holds all the parameters of this module.
         type: object
     description: QueryParamsResponse is response type for the Query/Params RPC method.
+  maprepro.repro.Rule:
+    type: object
+    properties:
+      rule:
+        type: object
+        additionalProperties:
+          type: integer
+          format: int32
+  maprepro.repro.RuleList:
+    type: object
+    properties:
+      rule:
+        type: array
+        items:
+          type: object
+          properties:
+            rule:
+              type: object
+              additionalProperties:
+                type: integer
+                format: int32

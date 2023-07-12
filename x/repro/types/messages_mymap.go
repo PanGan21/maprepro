@@ -16,13 +16,13 @@ var _ sdk.Msg = &MsgCreateMymap{}
 func NewMsgCreateMymap(
 	creator string,
 	index string,
-	innerMap InnerMap,
+	policy Policy,
 
 ) *MsgCreateMymap {
 	return &MsgCreateMymap{
-		Creator:  creator,
-		Index:    index,
-		InnerMap: &innerMap,
+		Creator: creator,
+		Index:   index,
+		Policy:  &policy,
 	}
 }
 

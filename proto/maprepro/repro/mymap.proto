@@ -2,11 +2,22 @@ syntax = "proto3";
 package maprepro.repro;
 
 option go_package = "maprepro/x/repro/types";
+import "gogoproto/gogo.proto";
 
 message Mymap {
   string index = 1;
   string creator = 2;
-  InnerMap innerMap = 3;
+  Policy policy = 3;
 }
 
-message InnerMap { map<string, string> inner = 1; }
+message Rule { map<string, int32> rule = 1; }
+
+message Policy {
+  map<string, Category> policy = 1 [ (gogoproto.nullable) = false ];
+}
+
+message Category {
+  map<string, RuleList> rules = 1 [ (gogoproto.nullable) = false ];
+}
+
+message RuleList { repeated Rule rule = 1 [ (gogoproto.nullable) = false ]; }

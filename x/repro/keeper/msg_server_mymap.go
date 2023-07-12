@@ -22,9 +22,9 @@ func (k msgServer) CreateMymap(goCtx context.Context, msg *types.MsgCreateMymap)
 	}
 
 	var mymap = types.Mymap{
-		Creator:  msg.Creator,
-		Index:    msg.Index,
-		InnerMap: msg.InnerMap,
+		Creator: msg.Creator,
+		Index:   msg.Index,
+		Policy:  msg.Policy,
 	}
 
 	k.SetMymap(
